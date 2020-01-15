@@ -132,7 +132,7 @@ namespace xphoto
         {
             uchar xmask = dmask.template at<uchar>(pPath[i]);
 
-            for (int j = 0; j < nTransform + 1; ++j)
+            for (int j = 0; j < int(transforms.size()) + 1; ++j)
             {
                 cv::Point2i u = pPath[i] + transforms[j];
 
@@ -142,7 +142,7 @@ namespace xphoto
                 if ( u.y < src.rows && u.y >= 0
                 &&   u.x < src.cols && u.x >= 0 )
                 {
-                    if ( xmask == 0 || j == nTransform )
+                    if ( xmask == 0 || j == int(transforms.size()) )
                         vmask = mask.template at<uchar>(u);
                     vimg = img.template at<cv::Vec<float, cn> >(u);
                 }
